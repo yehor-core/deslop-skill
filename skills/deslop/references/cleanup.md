@@ -8,7 +8,7 @@ Check `git status --porcelain` and where the target files are.
 
 - **Clean working tree**: create a branch in place, `git switch -c deslop/<short-slug>`. Dependencies (`node_modules`, `.venv`) keep working, so checks can run.
 - **Uncommitted changes in unrelated files**: use a worktree so the user's work is not touched. Prefer the EnterWorktree tool if it is available; otherwise `git worktree add ../<repo>-deslop -b deslop/<short-slug>`. A new worktree has no `node_modules` or virtualenv. Point it at the existing ones (symlink `node_modules`, reuse the venv's interpreter) or install, and say which you did.
-- **Uncommitted changes in the target files**: a worktree would not contain them. Ask with AskUserQuestion: "Commit my changes first, then clean on a branch" (recommended) or "Clean in place without a branch". Never stash or commit the user's work without that answer.
+- **Uncommitted changes in the target files**: a worktree would not contain them. Ask (see "Asking the user" in SKILL.md): "Commit my changes first, then clean on a branch" (recommended) or "Clean in place without a branch". Never stash or commit the user's work without that answer.
 - **Not a git repository**: ask before editing. Offer "Edit in place" or "Show the cleaned code only".
 
 The branch name goes in the report so the user can diff or delete it.

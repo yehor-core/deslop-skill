@@ -1,59 +1,103 @@
 # deslop
 
-A Claude Code plugin with one skill, `deslop`, that explains AI slop in code to a reviewer, scores it, and removes the parts the user picks.
+[![skills.sh installs](https://skills.sh/b/yehor-core/deslop-skill)](https://skills.sh/yehor-core/deslop-skill)
 
-Tuned for TypeScript/JavaScript and Python; the general patterns work for any language.
+deslop is a skill for coding agents that reviews AI-written code. It tells you what the code does, shows which parts are slop and why, scores it from 0 to 10, and removes only the parts you pick.
 
-## Flow
+Slop here means code that adds lines without adding behavior: comments that narrate the next line, try/catch blocks that hide errors, checks the types already guarantee, interfaces with one implementation, options nobody passes, tests that cannot fail. The skill judges code against the rest of your codebase. The score says how much of the code is slop; it does not guess whether a model wrote it, since people write slop too.
 
-1. You point it at code: a PR number, a diff, a file, a folder, the whole project, or a pasted snippet.
-2. It explains what the code does and where the bulk comes from, then asks whether to show the slop.
-3. It lists every finding with `file:line`, groups them by category, and scores each file from 0 to 10.
-4. A menu asks what to clean: everything, nothing, or by category, with an optional per-finding pass.
-5. It shows the plan and before/after for the largest edits, and waits for confirmation.
-6. It cleans on a separate branch or worktree, runs tests, type check, and lint before and after, rolls back any edit that broke a check, and commits per category.
+## Example
+
+Before:
+
+```python
+def load_config(path: str) -> AppConfig:
+    """
+    Load the application configuration.
+
+    Args:
+        path (str): Path to the config file.
+
+    Returns:
+        AppConfig: The configuration.
+    """
+    try:
+        # Validate the path
+        if path is None or not isinstance(path, str):
+            raise ValueError("Path must be a string")
+        logger.info(f"Loading config from {path}")
+        # Read the file
+        with open(path) as f:
+            data = json.load(f)
+        logger.info("✅ Config loaded successfully")
+        return AppConfig(**data)
+    except Exception as e:
+        logger.error(f"Error loading config: {e}")
+        # Fall back to default config
+        return AppConfig(database_url="sqlite:///default.db")
+```
+
+deslop's explanation:
+
+> `load_config` reads a JSON file into `AppConfig`. If anything goes wrong, including a typo in the file, it logs one line and returns a config that points at `sqlite:///default.db`, so the app starts against the wrong database.
+>
+> 8/10, about 80% of lines removable.
+>
+> 1. [D4] `config.py:21-24` | high | catch-all returns a default config | a broken config file looks like a working one
+> 2. [D3] `config.py:12-14` | med | `isinstance` check on `path: str` | the type already guarantees it
+> 3. [C2] `config.py:2-10` | med | docstring repeats the signature
+> 4. [D7] `config.py:15, 19` | med | log lines before and after a file read
+
+After you pick "Everything":
+
+```python
+def load_config(path: str) -> AppConfig:
+    with open(path) as f:
+        return AppConfig(**json.load(f))
+```
 
 ## Install
 
 ```bash
-claude plugin marketplace add /path/to/explain-ai-code-skill
-claude plugin install deslop@deslop
+npx skills add yehor-core/deslop-skill --skill deslop --global --agent claude-code
 ```
 
-Or try it without installing: `claude --plugin-dir /path/to/explain-ai-code-skill`.
+Swap `claude-code` for `codex`, `cursor`, or another agent the [Skills CLI](https://github.com/vercel-labs/skills) supports, or use `--agent '*'` for all of them. Leave off `--global` to install the skill only in the current project.
 
-Then run `/deslop:deslop 123` for a PR, `/deslop:deslop src/services`, or just ask "does this look AI-written?".
+The skill works best in Claude Code, where its questions show up as clickable menus. Other agents get the same questions as numbered lists.
 
-## Layout
+## Usage
+
+Point it at code:
 
 ```
-.claude-plugin/         plugin and marketplace manifests
-skills/deslop/
-  SKILL.md              the workflow, kept short
-  references/
-    voice.md            how explanations should read (adapted from Humanizer)
-    patterns.md         slop catalog with IDs, severity, and exceptions
-    typescript.md       TS/JS shapes of the patterns
-    python.md           Python shapes of the patterns
-    scoring.md          0-10 score rubric
-    cleanup.md          branch/worktree, baseline checks, editing rules, report
-evals/                  test material, not loaded by the skill (see evals/README.md)
-  evals.json            15 test prompts
-  fixtures/             hand-written sloppy and clean TS/Python scenarios
-  answers/              answer keys for the fixtures
-  external/             labeled cases from stopslop, anti-slop, and a blind CodeNet set
-  scripts/              importers and a scorer for labeled runs
+/deslop src/services/userService.ts
+/deslop src/api
+/deslop 482            # a pull request, via the gh CLI
+/deslop diff           # your branch and uncommitted changes
+/deslop project
 ```
 
-Reference files load only at the step that needs them, so the agent's context stays small.
+Or ask in plain language:
 
-## Defaults worth knowing
+```
+Does this look AI-written? src/sync.ts
+Clean up the slop in the last commit
+Почисти этот код от слопа: [paste]
+```
 
-- Defensive code is cleaned aggressively inside trust boundaries. Checks at boundaries (user input, network, files, env) and security checks are never flagged.
-- Signatures of exported functions are never changed.
-- Test slop may be deleted, but never the only test of a behavior.
-- The score measures slop, not authorship. Humans write slop too.
+Add `--clean` to go straight to the cleanup menu with a short explanation.
 
-## Credits
+## How it works
 
-`references/voice.md` adapts parts of [Humanizer](https://github.com/blader/humanizer) by Siqi Chen (MIT), which is based on Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing). Eval material under `evals/external/` comes from [stopslop](https://github.com/mgiovani/stopslop) (MIT), [anti-slop](https://github.com/dmmulroy/anti-slop) (MIT), and the [ai-code-detection](https://huggingface.co/datasets/serafeimdossas/ai-code-detection) dataset (MIT); each folder keeps its license. Slop categories draw on existing deslop prompts from [rohitg00/pro-workflow](https://github.com/rohitg00/pro-workflow/blob/main/skills/deslop/SKILL.md), Sentry's deslop skill, and [Jose Casanova's AI code slop reviewer](https://www.josecasanova.com/prompts/ai-code-slop-reviewer).
+1. deslop reads the code once and tells you what it does and where its size comes from. Real bugs it notices, such as a missing `await`, go in a separate list and stay out of the cleanup.
+2. If you ask for details, you get every finding with `file:line`, a short quote, and the reason it is slop, grouped by category, with a 0 to 10 score per file and overall.
+3. A menu asks what to clean: everything, nothing, or a set of categories. You can then drop individual findings from the selection.
+4. You see the plan and a before/after for the largest edits. Nothing changes until you confirm.
+5. deslop works on a new branch, or in a git worktree if you have unrelated uncommitted changes. It runs your tests, type checker, and linter before and after, reverts any edit that breaks a check that used to pass, and commits each category separately so you can undo one with `git revert`.
+
+Validation at trust boundaries (user input, HTTP, files, env vars), security checks, error handling with a real recovery, comments that explain why, and the signatures of exported functions stay as they are. The only test of a behavior is never deleted.
+
+Explanations follow writing rules adapted from [Humanizer](https://github.com/blader/humanizer), so the review of AI slop does not read like AI slop.
+
+The patterns are tuned for TypeScript/JavaScript and Python, and the general ones apply to any language.

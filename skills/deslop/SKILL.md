@@ -20,6 +20,10 @@ Slop means code that adds lines without adding behavior a careful human on this 
 
 Reply in the user's language. Code, identifiers, and file paths stay as they are.
 
+## Asking the user
+
+The skill stops for the user's choice at several points. Ask with the agent's structured question tool when it has one (AskUserQuestion in Claude Code): it gives the user clickable options. When there is no such tool, write the question as a short numbered list of options and end your turn; the user answers with numbers ("1", "2, 4", "all but 3"). Either way, wait for the answer before moving on. "Ask" below means this.
+
 ## Files in this skill
 
 Read each file at the step that needs it, not before. The base directory of this skill is given when the skill loads; resolve these paths against it.
@@ -43,7 +47,7 @@ The user may hand over any of these. Pick the matching way to read it:
 - "the project", "the repo": `git ls-files`, skipping generated code, vendored code, lockfiles, migrations, and build output.
 - Pasted code: work on the text in the message.
 
-If the target is unclear, ask with AskUserQuestion. Do not guess between "the diff" and "the whole repo"; they differ by orders of magnitude.
+If the target is unclear, ask. Do not guess between "the diff" and "the whole repo"; they differ by orders of magnitude.
 
 For a diff or PR, flag only the added or changed lines, but read enough of the surrounding file to know its conventions. A null check is slop in a file that trusts its types and normal in a file that validates everything.
 
@@ -58,7 +62,7 @@ Read the target once and do two things in the same pass:
 1. Understand what the code actually does, with the noise mentally stripped away.
 2. Record every slop finding in the format below. Keep the list for Step 2; do not show it yet.
 
-**Large targets.** When the target is more than about 20 files or 2,000 changed lines, split it into chunks of related files and spawn one general-purpose subagent per chunk, in parallel. Give each one the file list, the absolute paths of `patterns.md` and the relevant language file, and ask it to return only findings in the format below plus a three-line summary of what its chunk does. This keeps raw file contents out of your context.
+**Large targets.** When the target is more than about 20 files or 2,000 changed lines, split it into chunks of related files and, if the agent can run subagents, spawn one general-purpose subagent per chunk, in parallel. Give each one the file list, the absolute paths of `patterns.md` and the relevant language file, and ask it to return only findings in the format below plus a three-line summary of what its chunk does. This keeps raw file contents out of your context. Without subagents, go chunk by chunk and keep only the findings and summaries between chunks.
 
 Finding format (one line each, keep it compact):
 
@@ -76,7 +80,7 @@ Then write the explanation for the user:
 
 Keep it short. The reviewer can read code; tell them what the code hides.
 
-Then ask with AskUserQuestion whether to show the slop in detail. Options: "Show the slop" and "No, that's enough". If they decline, stop.
+Then ask whether to show the slop in detail. Options: "Show the slop" and "No, that's enough". If they decline, stop.
 
 ## Step 2: Show the slop, score it, offer the menu
 
@@ -90,11 +94,11 @@ Show:
 3. "Not slop, but bugs", if any.
 4. A rough count of lines the cleanup would remove.
 
-Then run the menu, using AskUserQuestion only:
+Then run the menu:
 
 - First question: "What should I clean?" with options "Everything", "Nothing", "Choose by category". "Nothing" ends the skill.
-- "Choose by category": ask multiSelect questions whose options are the categories that have findings, each labeled with its count ("Defensive overkill (7)"). One call holds at most 4 questions of 4 options, so split categories across questions and calls as needed.
-- After categories, ask once (single select) whether to fine-tune individual findings inside the chosen categories. If yes, ask multiSelect questions listing the findings by number and a few words, 4 per question, as many rounds as needed. Pre-state in the question text that unselected findings will be kept.
+- "Choose by category": offer the categories that have findings, each labeled with its count ("Defensive overkill (7)"), and let the user pick several. AskUserQuestion holds at most 4 questions of 4 options per call, so split categories across questions and calls as needed; a numbered text list has no such limit.
+- After categories, ask once whether to fine-tune individual findings inside the chosen categories. If yes, list the findings by number and a few words and let the user pick (with AskUserQuestion: multiSelect, 4 per question, as many rounds as needed). Say up front that unselected findings will be kept.
 
 ## Step 3: Plan and preview
 
@@ -104,7 +108,7 @@ For the chosen findings, write:
 - "Before / after" for the two or three largest edits: the original fragment and the cleaned fragment, short enough to read at a glance.
 - How the change is protected: the branch or worktree name, and which checks will run (see `references/cleanup.md` for how to pick them; read it now if needed).
 
-Ask with AskUserQuestion: "Apply", "Change the selection" (go back to the Step 2 menu), "Cancel".
+Ask: "Apply", "Change the selection" (go back to the Step 2 menu), "Cancel".
 
 For pasted code there is no repository: after "Apply", return the cleaned code in one block and a short list of what changed.
 
