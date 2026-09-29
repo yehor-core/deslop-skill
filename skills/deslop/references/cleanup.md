@@ -7,7 +7,7 @@ Read this at Step 4, after the user confirmed the plan. The goal: remove exactly
 Check `git status --porcelain` and where the target files are.
 
 - **Clean working tree**: create a branch in place, `git switch -c deslop/<short-slug>`. Dependencies (`node_modules`, `.venv`) keep working, so checks can run.
-- **Uncommitted changes in unrelated files**: use a worktree so the user's work is not touched. Prefer the EnterWorktree tool if it is available; otherwise `git worktree add ../<repo>-deslop -b deslop/<short-slug>`. A new worktree has no `node_modules` or virtualenv. Point it at the existing ones (symlink `node_modules`, reuse the venv's interpreter) or install, and say which you did.
+- **Uncommitted changes in unrelated files**: use a worktree so the user's work is not touched. Prefer the EnterWorktree tool if it is available; otherwise `git worktree add ../<repo>-deslop -b deslop/<short-slug>`. A new worktree has no `node_modules` or virtualenv. Point it at the existing ones (symlink `node_modules`, reuse the venv's interpreter). Installing dependencies runs package install scripts, so do it only if the user agreed to it in the plan, and say which you did.
 - **Uncommitted changes in the target files**: a worktree would not contain them. Ask (see "Asking the user" in SKILL.md): "Commit my changes first, then clean on a branch" (recommended) or "Clean in place without a branch". Never stash or commit the user's work without that answer.
 - **Not a git repository**: ask before editing. Offer "Edit in place" or "Show the cleaned code only".
 
@@ -17,9 +17,9 @@ The branch name goes in the report so the user can diff or delete it.
 
 Find the project's checks, in this order of trust: scripts in `package.json` (`test`, `typecheck`, `lint`), `Makefile` or `justfile` targets, CI config (`.github/workflows/*.yml`), then tool configs (`tsconfig.json` means `npx tsc --noEmit`; `pyproject.toml` with `[tool.pytest]`, `[tool.ruff]`, `[tool.mypy]`, `[tool.pyright]`).
 
-Run them before editing and keep the results: which pass, which fail, and the failing test names. Failures that exist before the cleanup are not yours to fix; report them as pre-existing. If a full test suite takes more than a few minutes, run the tests that cover the target files and say so.
+Run only the commands listed in the plan the user approved at Step 3, exactly as listed. If you discover while working that another command is needed, ask first. Run them before editing and keep the results: which pass, which fail, and the failing test names. Failures that exist before the cleanup are not yours to fix; report them as pre-existing. If a full test suite takes more than a few minutes, run the tests that cover the target files and say so.
 
-If the project has no checks at all, say so in the plan at Step 3, and be more careful: after cleanup at least import or compile each touched file (`node --check`, `npx tsc --noEmit` on the files, `python -m py_compile`).
+If the project has no checks at all, or the user chose not to run them, say so in the plan at Step 3, and be more careful: after cleanup at least import or compile each touched file (`node --check`, `npx tsc --noEmit` on the files, `python -m py_compile`).
 
 ## 3. Edit
 
