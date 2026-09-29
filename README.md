@@ -59,7 +59,7 @@ def load_config(path: str) -> AppConfig:
 ## Install
 
 ```bash
-npx skills add yehor-core/deslop-skill --skill deslop --global --agent claude-code
+the [Skills CLI](https://github.com/vercel-labs/skills) supports
 ```
 Add `--agent claude-code`/`codex`/`cursor`, or another agent the [Skills CLI](https://github.com/vercel-labs/skills) supports, or use `--agent '*'` for all of them.
 Add `--gloabl` to install skill globaly.
