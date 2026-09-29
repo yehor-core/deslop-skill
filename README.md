@@ -61,8 +61,9 @@ def load_config(path: str) -> AppConfig:
 ```bash
 npx skills add yehor-core/deslop-skill
 ```
-Add `--agent claude-code`/`codex`/`cursor`, or another agent the [Skills CLI](https://github.com/vercel-labs/skills) supports, or use `--agent '*'` for all of them.
-Add `--gloabl` to install skill globaly.
+The CLI asks which agents to install the skill for. To skip the prompt, add `--agent` with an agent name (`claude-code`, `codex`, `cursor`, or any other agent the [Skills CLI](https://github.com/vercel-labs/skills) supports), or `--agent '*'` for all of them. 
+
+Add `--global` to install the skill for all your projects instead of only the current one.
 
 The skill works best in Claude Code, where its questions show up as clickable menus. Other agents get the same questions as numbered lists.
 
