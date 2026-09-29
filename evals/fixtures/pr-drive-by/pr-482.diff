@@ -1,0 +1,88 @@
+diff --git a/src/mail/templates.ts b/src/mail/templates.ts
+index 3f1c2a9..8b7d410 100644
+--- a/src/mail/templates.ts
++++ b/src/mail/templates.ts
+@@ -1,12 +1,48 @@
+ import { User } from "../models/user";
++import { LRUCache } from "lru-cache";
++
++// Cache for rendered templates to improve performance
++const templateCache = new LRUCache<string, string>({ max: 500 });
++
++/**
++ * Configuration options for template rendering.
++ */
++export interface TemplateOptions {
++  useCache?: boolean;
++  locale?: string;
++  escapeHtml?: boolean;
++}
+
+-export function passwordResetSubject(): string {
+-  return "Pasword reset";
++export function passwordResetSubject(): string {
++  return "Password reset";
+ }
+
+-export function passwordResetBody(user: User, link: string): string {
+-  return `Hi ${user.firstName},\n\nReset your password here: ${link}\n`;
++/**
++ * Renders the password reset email body.
++ * @param user - The user
++ * @param link - The reset link
++ * @param options - Optional rendering options
++ * @returns The rendered body
++ */
++export function passwordResetBody(user: User, link: string, options: TemplateOptions = {}): string {
++  // Check if user is valid
++  if (!user || !user.firstName) {
++    return `Hi there,\n\nReset your password here: ${link}\n`;
++  }
++
++  const cacheKey = `${user.id}:${link}`;
++  if (options.useCache !== false) {
++    const cached = templateCache.get(cacheKey);
++    if (cached) {
++      return cached;
++    }
++  }
++
++  const body = `Hi ${user.firstName},\n\nReset your password here: ${link}\n`;
++  templateCache.set(cacheKey, body);
++  return body;
+ }
+diff --git a/src/mail/send.ts b/src/mail/send.ts
+index 91ad0e2..c04b7ff 100644
+--- a/src/mail/send.ts
++++ b/src/mail/send.ts
+@@ -1,18 +1,22 @@
+-import { transport } from './transport'
+-import { passwordResetSubject, passwordResetBody } from './templates'
+-import type { User } from '../models/user'
++import { transport } from "./transport";
++import { passwordResetSubject, passwordResetBody } from "./templates";
++import type { User } from "../models/user";
+
+-export async function sendPasswordReset(user: User, link: string) {
+-  await transport.send({
+-    to: user.email,
+-    subject: passwordResetSubject(),
+-    text: passwordResetBody(user, link),
+-  })
++export async function sendPasswordReset(user: User, link: string) {
++  try {
++    await transport.send({
++      to: user.email,
++      subject: passwordResetSubject(),
++      text: passwordResetBody(user, link),
++    });
++  } catch (error) {
++    console.error("Failed to send password reset email:", error);
++  }
+ }
+
+-export async function sendWelcome(user: User) {
+-  await transport.send({ to: user.email, subject: 'Welcome', text: `Hi ${user.firstName}` })
++export async function sendWelcome(user: User) {
++  await transport.send({ to: user.email, subject: "Welcome", text: `Hi ${user.firstName}` });
+ }

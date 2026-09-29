@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "deslop",
+  "owner": {
+    "name": "yehor-core",
+    "email": "kanunnikovyehor@gmail.com"
+  },
+  "description": "Install deslop as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "deslop",
+      "source": "./",
+      "description": "Explain AI slop in code to a reviewer, score it, and clean up what the user picks.",
+      "license": "MIT",
+      "keywords": ["code-review", "ai-slop", "refactoring", "cleanup"]
+    }
+  ]
+}

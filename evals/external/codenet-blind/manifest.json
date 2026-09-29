@@ -1,0 +1,207 @@
+{
+  "source": "https://huggingface.co/datasets/serafeimdossas/ai-code-detection",
+  "license": "MIT (dataset); human solutions come from IBM Project CodeNet",
+  "note": "Blind set. Never pass this file to the skill under test.",
+  "tasks": [
+    {
+      "folder": "external/codenet-blind/task-01",
+      "task": "AISing Programming Contest 2019 - Alternating Path",
+      "files": {
+        "a.py": "Gemini 2.5 Flash-Lite",
+        "b.py": "OpenAI o4-mini",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Human"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-02",
+      "task": "AtCoder Beginner Contest 057 - Maximum Average Sets",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "Human",
+        "c.py": "OpenAI o4-mini",
+        "d.py": "Gemini 2.5 Flash-Lite"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-03",
+      "task": "AtCoder Beginner Contest 104 - All Green",
+      "files": {
+        "a.py": "Human",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "OpenAI o4-mini",
+        "d.py": "Claude 3.5 Haiku"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-04",
+      "task": "AtCoder Beginner Contest 129 - Sum Equals Xor",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "Human",
+        "d.py": "Claude 3.5 Haiku"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-05",
+      "task": "AtCoder Beginner Contest 131 - Friendships",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Human",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Gemini 2.5 Flash-Lite"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-06",
+      "task": "AtCoder Beginner Contest 132 - Hopscotch Addict",
+      "files": {
+        "a.py": "Human",
+        "b.py": "OpenAI o4-mini",
+        "c.py": "Gemini 2.5 Flash-Lite",
+        "d.py": "Claude 3.5 Haiku"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-07",
+      "task": "AtCoder Beginner Contest 133 - Virus Tree 2",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "Human",
+        "c.py": "Gemini 2.5 Flash-Lite",
+        "d.py": "OpenAI o4-mini"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-08",
+      "task": "AtCoder Beginner Contest 142 - Disjoint Set of Common Divisors",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Human"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-09",
+      "task": "AtCoder Beginner Contest 145 - All-you-can-eat",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "Human",
+        "d.py": "OpenAI o4-mini"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-10",
+      "task": "AtCoder Beginner Contest 148 - Double Factorial",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Human",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Gemini 2.5 Flash-Lite"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-11",
+      "task": "AtCoder Beginner Contest 149 - Handshake",
+      "files": {
+        "a.py": "Gemini 2.5 Flash-Lite",
+        "b.py": "OpenAI o4-mini",
+        "c.py": "Human",
+        "d.py": "Claude 3.5 Haiku"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-12",
+      "task": "AtCoder Beginner Contest 162 - Sum of gcd of Tuples (Hard)",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Human"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-13",
+      "task": "AtCoder Beginner Contest 167 - Bracket Sequencing",
+      "files": {
+        "a.py": "Human",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "OpenAI o4-mini",
+        "d.py": "Claude 3.5 Haiku"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-14",
+      "task": "AtCoder Beginner Contest 167 - Skill Up",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "OpenAI o4-mini",
+        "c.py": "Human",
+        "d.py": "Gemini 2.5 Flash-Lite"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-15",
+      "task": "AtCoder Beginner Contest 168 - \u00e2\u0088\u0099 (Bullet)",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Gemini 2.5 Flash-Lite",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Human"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-16",
+      "task": "AtCoder Beginner Contest 173 - Multiplication 4",
+      "files": {
+        "a.py": "Gemini 2.5 Flash-Lite",
+        "b.py": "OpenAI o4-mini",
+        "c.py": "Human",
+        "d.py": "Claude 3.5 Haiku"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-17",
+      "task": "AtCoder Grand Contest 014 - Unplanned Queries",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "Human",
+        "c.py": "OpenAI o4-mini",
+        "d.py": "Gemini 2.5 Flash-Lite"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-18",
+      "task": "AtCoder Petrozavodsk Contest 001 - Vacant Seat",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "Human",
+        "c.py": "Gemini 2.5 Flash-Lite",
+        "d.py": "OpenAI o4-mini"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-19",
+      "task": "Panasonic Programming Contest 2020 - String Equivalence",
+      "files": {
+        "a.py": "Claude 3.5 Haiku",
+        "b.py": "Human",
+        "c.py": "Gemini 2.5 Flash-Lite",
+        "d.py": "OpenAI o4-mini"
+      }
+    },
+    {
+      "folder": "external/codenet-blind/task-20",
+      "task": "diverta 2019 Programming Contest 2 - Successive Subtraction",
+      "files": {
+        "a.py": "OpenAI o4-mini",
+        "b.py": "Human",
+        "c.py": "Claude 3.5 Haiku",
+        "d.py": "Gemini 2.5 Flash-Lite"
+      }
+    }
+  ]
+}

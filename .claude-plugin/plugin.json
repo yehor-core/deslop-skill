@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "deslop",
+  "description": "Explain AI slop in code to a reviewer, score it, and clean up what the user picks.",
+  "version": "0.1.0",
+  "author": {
+    "name": "yehor-core",
+    "email": "kanunnikovyehor@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": ["code-review", "ai-slop", "refactoring", "cleanup", "typescript", "python"]
+}

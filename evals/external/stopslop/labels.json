@@ -1,0 +1,1025 @@
+{
+  "source": "https://github.com/mgiovani/stopslop",
+  "commit": "00264161ac7a49652b11c78c9c3ab79502622763",
+  "license": "MIT",
+  "cases": [
+    {
+      "file": "external/stopslop/python/clean_attribution.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_attribution_pt_br.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_code_uniformity.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_comment_length.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_elision.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_elision_pt_br.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_except.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_fence.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_placeholder.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_placeholder_pt_br.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_preamble.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_preamble_pt_br.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_reinvent.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_restate.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_restate_pt_br.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_single_impl.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_stub.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/clean_wrapper.py",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/python/slop_attribution.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP004",
+          "upstream_name": "AI attribution / chat-share artifact",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_attribution_pt_br.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP004",
+          "upstream_name": "AI attribution / chat-share artifact",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_code_uniformity.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP045",
+          "upstream_name": "mechanical formatting uniformity",
+          "pattern": "R6"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_comment_length.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP043",
+          "upstream_name": "comment that runs long",
+          "pattern": "C1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_elision.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 4,
+          "upstream_rule": "SLOP001",
+          "upstream_name": "elision / 'rest unchanged' comment",
+          "pattern": "R7"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_elision_pt_br.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP001",
+          "upstream_name": "elision / 'rest unchanged' comment",
+          "pattern": "R7"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_except.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 7,
+          "upstream_rule": "SLOP006",
+          "upstream_name": "broad or swallowing except",
+          "pattern": "D1"
+        },
+        {
+          "line": 14,
+          "upstream_rule": "SLOP006",
+          "upstream_name": "broad or swallowing except",
+          "pattern": "D1"
+        },
+        {
+          "line": 21,
+          "upstream_rule": "SLOP006",
+          "upstream_name": "broad or swallowing except",
+          "pattern": "D1"
+        },
+        {
+          "line": 28,
+          "upstream_rule": "SLOP006",
+          "upstream_name": "broad or swallowing except",
+          "pattern": "D1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_fence.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 4,
+          "upstream_rule": "SLOP003",
+          "upstream_name": "stray markdown code fence",
+          "pattern": "R7"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_placeholder.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 4,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 5,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 8,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_placeholder_pt_br.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 3,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 5,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_preamble.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP002",
+          "upstream_name": "chat preamble leaked into code",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_preamble_pt_br.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP002",
+          "upstream_name": "chat preamble leaked into code",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_reinvent.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 3,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 9,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 12,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 17,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 24,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_restate.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 6,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        },
+        {
+          "line": 10,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_restate_pt_br.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 6,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        },
+        {
+          "line": 10,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        },
+        {
+          "line": 14,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_single_impl.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 4,
+          "upstream_rule": "SLOP040",
+          "upstream_name": "single-implementation interface / abstract class",
+          "pattern": "O2"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_stub.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP008",
+          "upstream_name": "stub-only / unimplemented body",
+          "pattern": "R3"
+        },
+        {
+          "line": 5,
+          "upstream_rule": "SLOP008",
+          "upstream_name": "stub-only / unimplemented body",
+          "pattern": "R3"
+        },
+        {
+          "line": 9,
+          "upstream_rule": "SLOP008",
+          "upstream_name": "stub-only / unimplemented body",
+          "pattern": "R3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/python/slop_wrapper.py",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP039",
+          "upstream_name": "pass-through wrapper function",
+          "pattern": "O1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/clean_attribution.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_attribution_pt_br.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_catch.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_catch.tsx",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_code_uniformity.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_comment_length.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_elision.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_elision_pt_br.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_fence.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_placeholder.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_placeholder_pt_br.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_preamble.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_preamble_pt_br.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_redundant_dep.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_redundant_dep.tsx",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_reinvent.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_reinvent.tsx",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_restate.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_restate_pt_br.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_single_impl.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_single_impl.tsx",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_stub.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_typeescape.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_typeescape.tsx",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_wrapper.ts",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/clean_wrapper.tsx",
+      "kind": "clean",
+      "expected": []
+    },
+    {
+      "file": "external/stopslop/typescript/slop_attribution.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP004",
+          "upstream_name": "AI attribution / chat-share artifact",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_attribution_pt_br.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP004",
+          "upstream_name": "AI attribution / chat-share artifact",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_catch.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 7,
+          "upstream_rule": "SLOP005",
+          "upstream_name": "empty or log-only catch",
+          "pattern": "D1"
+        },
+        {
+          "line": 13,
+          "upstream_rule": "SLOP005",
+          "upstream_name": "empty or log-only catch",
+          "pattern": "D1"
+        },
+        {
+          "line": 21,
+          "upstream_rule": "SLOP005",
+          "upstream_name": "empty or log-only catch",
+          "pattern": "D1"
+        },
+        {
+          "line": 29,
+          "upstream_rule": "SLOP005",
+          "upstream_name": "empty or log-only catch",
+          "pattern": "D1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_catch.tsx",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 7,
+          "upstream_rule": "SLOP005",
+          "upstream_name": "empty or log-only catch",
+          "pattern": "D1"
+        },
+        {
+          "line": 14,
+          "upstream_rule": "SLOP005",
+          "upstream_name": "empty or log-only catch",
+          "pattern": "D1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_code_uniformity.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP045",
+          "upstream_name": "mechanical formatting uniformity",
+          "pattern": "R6"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_comment_length.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP043",
+          "upstream_name": "comment that runs long",
+          "pattern": "C1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_elision.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 3,
+          "upstream_rule": "SLOP001",
+          "upstream_name": "elision / 'rest unchanged' comment",
+          "pattern": "R7"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_elision_pt_br.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP001",
+          "upstream_name": "elision / 'rest unchanged' comment",
+          "pattern": "R7"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_fence.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 5,
+          "upstream_rule": "SLOP003",
+          "upstream_name": "stray markdown code fence",
+          "pattern": "R7"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_placeholder.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 3,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 5,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 7,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_placeholder_pt_br.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 3,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        },
+        {
+          "line": 5,
+          "upstream_rule": "SLOP009",
+          "upstream_name": "placeholder or sample credential value",
+          "pattern": "R3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_preamble.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP002",
+          "upstream_name": "chat preamble leaked into code",
+          "pattern": "C3"
+        },
+        {
+          "line": 6,
+          "upstream_rule": "SLOP002",
+          "upstream_name": "chat preamble leaked into code",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_preamble_pt_br.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP002",
+          "upstream_name": "chat preamble leaked into code",
+          "pattern": "C3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_redundant_dep.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP038",
+          "upstream_name": "dependency with a stdlib equivalent",
+          "pattern": "V5"
+        },
+        {
+          "line": 2,
+          "upstream_rule": "SLOP038",
+          "upstream_name": "dependency with a stdlib equivalent",
+          "pattern": "V5"
+        },
+        {
+          "line": 3,
+          "upstream_rule": "SLOP038",
+          "upstream_name": "dependency with a stdlib equivalent",
+          "pattern": "V5"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_redundant_dep.tsx",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP038",
+          "upstream_name": "dependency with a stdlib equivalent",
+          "pattern": "V5"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_reinvent.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 6,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 10,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 16,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 23,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        },
+        {
+          "line": 26,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_reinvent.tsx",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 2,
+          "upstream_rule": "SLOP037",
+          "upstream_name": "reinvented stdlib / platform feature",
+          "pattern": "V5"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_restate.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 5,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        },
+        {
+          "line": 10,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_restate_pt_br.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 5,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        },
+        {
+          "line": 10,
+          "upstream_rule": "SLOP042",
+          "upstream_name": "comment that restates the code",
+          "pattern": "C1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_single_impl.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP040",
+          "upstream_name": "single-implementation interface / abstract class",
+          "pattern": "O2"
+        },
+        {
+          "line": 11,
+          "upstream_rule": "SLOP040",
+          "upstream_name": "single-implementation interface / abstract class",
+          "pattern": "O2"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_single_impl.tsx",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP040",
+          "upstream_name": "single-implementation interface / abstract class",
+          "pattern": "O2"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_stub.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP008",
+          "upstream_name": "stub-only / unimplemented body",
+          "pattern": "R3"
+        },
+        {
+          "line": 6,
+          "upstream_rule": "SLOP008",
+          "upstream_name": "stub-only / unimplemented body",
+          "pattern": "R3"
+        },
+        {
+          "line": 11,
+          "upstream_rule": "SLOP008",
+          "upstream_name": "stub-only / unimplemented body",
+          "pattern": "R3"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_typeescape.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 10,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        },
+        {
+          "line": 13,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        },
+        {
+          "line": 19,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        },
+        {
+          "line": 26,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_typeescape.tsx",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 10,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        },
+        {
+          "line": 13,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        },
+        {
+          "line": 15,
+          "upstream_rule": "SLOP007",
+          "upstream_name": "type escape (as any, as unknown as T, @ts-ignore)",
+          "pattern": "T1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_wrapper.ts",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP039",
+          "upstream_name": "pass-through wrapper function",
+          "pattern": "O1"
+        },
+        {
+          "line": 5,
+          "upstream_rule": "SLOP039",
+          "upstream_name": "pass-through wrapper function",
+          "pattern": "O1"
+        }
+      ]
+    },
+    {
+      "file": "external/stopslop/typescript/slop_wrapper.tsx",
+      "kind": "slop",
+      "expected": [
+        {
+          "line": 1,
+          "upstream_rule": "SLOP039",
+          "upstream_name": "pass-through wrapper function",
+          "pattern": "O1"
+        }
+      ]
+    }
+  ]
+}

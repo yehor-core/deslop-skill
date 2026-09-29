@@ -1,0 +1,738 @@
+{
+  "source": "https://github.com/dmmulroy/anti-slop",
+  "commit": "c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b",
+  "license": "MIT",
+  "note": "Opinionated upstream rules; treat kind as a soft expectation.",
+  "cases": [
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const value = input as User;"
+    },
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const value = (input as User);"
+    },
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const value = ({ id: 1 } as const) as const;"
+    },
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const value = input as unknown as User;",
+      "name": "as chain"
+    },
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const value = (input as unknown) as User;",
+      "name": "parenthesized chain"
+    },
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const value = <User>(<unknown>input);",
+      "name": "angle-bracket chain"
+    },
+    {
+      "rule": "no-chained-type-assertions",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const value = ({ id: 1 } as const) as User;",
+      "name": "mixed const chain"
+    },
+    {
+      "rule": "no-widen-then-assert",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const source = { id: 'first' }; const widened: unknown = source;"
+    },
+    {
+      "rule": "no-widen-then-assert",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "declare const input: unknown; const parsed = input as { readonly id: string };"
+    },
+    {
+      "rule": "no-widen-then-assert",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const source = { id: 'second' }; const widened: unknown = source; const parsed = widened as { readonly id: string };"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "// INVARIANT: The caller parsed this value.\nconst value = input as User;",
+      "options": [
+        {
+          "markers": [
+            "INVARIANT"
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "// SAFETY: The caller parsed this value.\nconst value = input as User;",
+      "options": [
+        {
+          "markers": [
+            "INVARIANT",
+            "SAFETY"
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "// SAFE+: The caller parsed this value.\nconst value = input as User;",
+      "options": [
+        {
+          "markers": [
+            "SAFE+"
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "// SAFETY: This marker is not configured.\nconst value = input as User;",
+      "options": [
+        {
+          "markers": [
+            "INVARIANT"
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "// INVARIANT:   \nconst value = input as User;",
+      "options": [
+        {
+          "markers": [
+            "INVARIANT"
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const values = [1, 2] as const;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const value = <const>{ id: 'one' };"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "// SAFETY: The parser established the UserId invariant.\nconst id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "function parse(): UserId {\n// SAFETY: Validation above established the UserId invariant.\nreturn value as UserId;\n}"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "const id = /* SAFETY: Validation established the invariant. */ value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "// SAFETY: The parser established the exported UserId invariant.\nexport const id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "clean",
+      "code": "/* SAFETY:\n * The parser established the exported UserId invariant.\n */\nexport const id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const id = <UserId>value;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const id = value as UserId; // SAFETY: Too late."
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "// This cast seems fine.\nconst id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "// SAFETY:\nconst id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "// SAFETY:   \nconst id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "const id = /* SAFETY: */ value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "export const id = value as UserId;"
+    },
+    {
+      "rule": "require-safety-comment-for-type-assertion",
+      "pattern": "T1",
+      "kind": "slop",
+      "code": "// This is not a safety justification.\nexport const id = value as UserId;"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { acc.push(item); return acc; }, []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => Object.assign(acc, item), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => Object.assign(acc, acc, item), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { acc[item.id] = { ...item }; return acc; }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { acc.push(Object.assign({}, item)); return acc; }, []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { acc.push(item.slice()); return acc; }, []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => acc.concat(item), '');"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => acc.concat(item), customCollection);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "function copy(acc) { return Object.assign({}, acc); }"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.map((acc, item) => Object.assign({}, acc));"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { function copy(acc) { return Object.assign({}, acc); } return acc; }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { const snapshot = () => Object.assign({}, acc); return acc; }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { { const acc = {}; Object.assign({}, acc); } return acc; }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const Object = custom; items.reduce((acc, item) => Object.assign({}, acc), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "function run(Object) { return items.reduce((acc, item) => Object.assign({}, acc), {}); }"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const Array = custom; items.reduce((acc, item) => Array.from(acc), []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => { let alias = acc; alias = item; return Object.assign({}, alias); }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => [...acc, item], []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "items.reduce((acc, item) => ({ ...acc, [item.id]: item }), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => Object.assign({}, acc, { [item.id]: item }), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduceRight((acc, item) => Object.assign({}, acc, item), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item, index, array) => Object.assign({}, acc, item), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce(acc => Object.assign({}, acc), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce(function (acc, item) { return Object.assign({}, item, acc); }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items['reduce'](((acc, item) => Object['assign']({}, acc, item)), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc = {}, item) => Object.assign({}, acc, item), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => { const alias = acc; return Object.assign({}, alias, item); }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => Object.assign({}, acc as State, item), {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => { const next = Object.assign({}, acc); next[item.id] = item; return next; }, {});"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => acc.concat([item]), []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduceRight((acc, item, index) => acc['concat']([item]), [] as Item[]);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => { const next = acc.slice(); next.push(item); return next; }, []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => { const alias = acc; return alias.concat(item); }, []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const initial = []; items.reduce((acc, item) => acc.concat(item), initial);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => { const next = Array.from(acc); next.push(item); return next; }, []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => acc.toSpliced(acc.length, 0, item), []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => acc.toSorted(), []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => acc.toReversed(), []);"
+    },
+    {
+      "rule": "no-reduce-accumulator-copy",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "items.reduce((acc, item) => acc.with(0, item), []);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users.values().filter(active).map(email).toArray();"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users.values().map(email).filter(Boolean).toArray();"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "Iterator.from(users).filter(active).map(email).toArray();"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "function collect(users: IteratorObject<User>) { return users.filter(active).map(email).toArray(); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users.flatMap(user => user.active ? [user.email] : []);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users.map(email); users.filter(active);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users.map(email).map(normalize);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users.filter(active).filter(verified);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const custom = { filter() { return this; }, map() {} }; custom.filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "function collect(unknownReceiver) { return unknownReceiver.filter(active).map(email); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = fetchUsers(); users.filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; function collect(users) { return users.filter(active).map(email); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "let users = []; users = iterator; users.filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const users = []; users[method](active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "clean",
+      "code": "const first = second; const second = first; first.filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "[].filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "[].map(user => user.active ? user.email : undefined).filter(email => email !== undefined);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = []; users.map(email).filter(Boolean);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = []; const alias = users; alias.filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "function collect(users: User[]) { return users.filter(active).map(email); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "function collect(users: readonly User[]) { return users.map(email).filter(present); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "function collect(users: ReadonlyArray<User>) { return users.filter(active).map(email); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "function collect(users: Array<User>) { return users.filter(active).map(email); }"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = [] as const; users['filter'](active)['map'](email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = []; (users.filter(active)!).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = []; users?.filter(active)?.map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = []; users.slice().filter(active).map(email);"
+    },
+    {
+      "rule": "no-array-filter-map",
+      "pattern": "V3",
+      "kind": "slop",
+      "code": "const users = []; users.filter(active).map(email).filter(Boolean);"
+    },
+    {
+      "rule": "no-conditional-empty-object-spread",
+      "pattern": "V4",
+      "kind": "clean",
+      "code": "const result = { value };"
+    },
+    {
+      "rule": "no-conditional-empty-object-spread",
+      "pattern": "V4",
+      "kind": "clean",
+      "code": "const result = { ...values };"
+    },
+    {
+      "rule": "no-conditional-empty-object-spread",
+      "pattern": "V4",
+      "kind": "clean",
+      "code": "const result = condition ? { value } : {};"
+    },
+    {
+      "rule": "no-conditional-empty-object-spread",
+      "pattern": "V4",
+      "kind": "slop",
+      "code": "const result = { ...(value !== undefined ? { value } : {}) };"
+    },
+    {
+      "rule": "no-conditional-empty-object-spread",
+      "pattern": "V4",
+      "kind": "slop",
+      "code": "const result = { ...(condition ? {} : { value }) };"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "clean",
+      "code": "const store = new InMemoryUserStore();"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "clean",
+      "code": "vi.spyOn(store, 'save');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "clean",
+      "code": "const vi = { mock() {} }; vi.mock();"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "clean",
+      "code": "function test(jest: { mock(): void }) { jest.mock(); }"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "clean",
+      "code": "import { vi as localVi } from './helpers'; localVi.mock('./module');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "vi.mock('./user-store');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "jest.mock('./user-store');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "vi['doMock']('./user-store');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "jest.unstable_mockModule('./user-store');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "import { vi } from 'vitest'; vi.mock('./user-store');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "import { vi as testApi } from 'vitest'; testApi.mock('./user-store');"
+    },
+    {
+      "rule": "no-module-mocking",
+      "pattern": "S1",
+      "kind": "slop",
+      "code": "import { jest } from '@jest/globals'; jest.mock('./user-store');"
+    }
+  ]
+}
