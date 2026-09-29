@@ -59,7 +59,7 @@ def load_config(path: str) -> AppConfig:
 ## Install
 
 ```bash
-npx skills add yehor-core/deslop-skill
+npx skills add https://github.com/yehor-core/deslop-skill --skill deslop
 ```
 The CLI asks which agents to install the skill for. To skip the prompt, add `--agent` with an agent name (`claude-code`, `codex`, `cursor`, or any other agent the [Skills CLI](https://github.com/vercel-labs/skills) supports), or `--agent '*'` for all of them. 
 
