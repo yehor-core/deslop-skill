@@ -4,102 +4,102 @@
     {
       "id": 1,
       "name": "ts-service-explain",
-      "prompt": "глянь evals/fixtures/ts-user-service/src/userService.ts, по-моему это писала нейронка. объясни что там реально происходит и где слоп",
+      "prompt": "глянь evals/deslop/fixtures/ts-user-service/src/userService.ts, по-моему это писала нейронка. объясни что там реально происходит и где слоп",
       "expected_output": "Short Russian explanation of what UserService does (get/create/delete through db.users), then a question whether to show the slop. When shown: score around 7-8, findings including C1 narrating comments, C2 docstrings, D1/D2 getUser swallowing all errors into null, D6 retry loop around insert, O2 IUserService with one implementation, O3 unused options (verbose, onProgress), O1 createUserService factory, O6 backwards-compat alias, V2 boolean round-trip in deleteUser, T1 'error: any', R1 console.log with emoji. Menu with Everything / Nothing / Choose by category. No em dashes, no staged openers.",
       "files": [
-        "evals/fixtures/ts-user-service/src/userService.ts",
-        "evals/fixtures/ts-user-service/src/db.ts"
+        "evals/deslop/fixtures/ts-user-service/src/userService.ts",
+        "evals/deslop/fixtures/ts-user-service/src/db.ts"
       ],
       "answer_key": null
     },
     {
       "id": 2,
       "name": "py-loader-clean-all",
-      "prompt": "/deslop evals/fixtures/py-config-loader --clean. чисти всё",
+      "prompt": "/deslop evals/deslop/fixtures/py-config-loader --clean. чисти всё",
       "expected_output": "Brief explanation, score, findings list. Flags the silent fallback to sqlite:///default.db on any error as high severity (hides a broken config and runs on the wrong database). Flags BaseConfigLoader + ConfigLoaderFactory as O2, unused strict/cache options as O3, is_debug as V2, type: ignore + Any as T1, test_load_config_is_callable / test_app_config_stores_fields / test_loader_calls_open as test slop while keeping test_load_config_reads_values. Plan with before/after, branch name, checks (pytest). Does not remove the DATABASE_URL env override (real behavior).",
       "files": [
-        "evals/fixtures/py-config-loader"
+        "evals/deslop/fixtures/py-config-loader"
       ],
       "answer_key": null
     },
     {
       "id": 3,
       "name": "clean-code-no-false-positives",
-      "prompt": "Is there any AI slop in evals/fixtures/clean-ts/retry.ts? A teammate says the try/catch and the checks in parseLimit are over-defensive.",
+      "prompt": "Is there any AI slop in evals/deslop/fixtures/clean-ts/retry.ts? A teammate says the try/catch and the checks in parseLimit are over-defensive.",
       "expected_output": "Score 0-1. Explains that the try/catch in fetchWithRetry has a real recovery (retry with backoff) and keeps the cause, and that parseLimit validates untrusted client input at a trust boundary, so neither is slop. Comments explain why, so they stay. Pushes back on the teammate politely and specifically.",
       "files": [
-        "evals/fixtures/clean-ts/retry.ts"
+        "evals/deslop/fixtures/clean-ts/retry.ts"
       ],
       "answer_key": "answers/clean-fixtures.md"
     },
     {
       "id": 4,
       "name": "ts-express-layers",
-      "prompt": "Can you review evals/fixtures/ts-express-orders? A junior wrote it with Copilot and I want to know what's real and what's noise before I approve.",
+      "prompt": "Can you review evals/deslop/fixtures/ts-express-orders? A junior wrote it with Copilot and I want to know what's real and what's noise before I approve.",
       "expected_output": "English. Explains the create/get order flow in a few sentences. Finds the missing await in the GET handler as a bug (not slop). Findings include T3 widen-then-assert, D5 validation repeated in three layers, D6 retry around in-memory save, D1 log before next(error). Does not flag the zod schema. Score 6-8.",
       "files": [
-        "evals/fixtures/ts-express-orders"
+        "evals/deslop/fixtures/ts-express-orders"
       ],
       "answer_key": "answers/ts-express-orders.md"
     },
     {
       "id": 5,
       "name": "ts-react-chat-artifacts",
-      "prompt": "/deslop evals/fixtures/ts-react-profile --clean",
+      "prompt": "/deslop evals/deslop/fixtures/ts-react-profile --clean",
       "expected_output": "Short explanation, then findings. Flags the 'Certainly! Here's...' preamble (C3), '... rest of the card unchanged' (R7, possible missing content), YOUR_API_KEY_HERE placeholder (R3, called out first as a security/placeholder issue), deps [] with eslint-disable and never-set error state as bugs. Unused props compact/theme/onError are reported but treated as public API. Menu offers Everything / Nothing / Choose by category.",
       "files": [
-        "evals/fixtures/ts-react-profile"
+        "evals/deslop/fixtures/ts-react-profile"
       ],
       "answer_key": "answers/ts-react-profile.md"
     },
     {
       "id": 6,
       "name": "ts-project-duplicates",
-      "prompt": "посмотри весь проект evals/fixtures/ts-duplicate-helpers целиком, есть ли там слоп на уровне проекта, а не отдельных файлов",
+      "prompt": "посмотри весь проект evals/deslop/fixtures/ts-duplicate-helpers целиком, есть ли там слоп на уровне проекта, а не отдельных файлов",
       "expected_output": "Russian. Finds the three date formatters across folders and notices toDisplayDate uses UTC (toISOString) while the others use local time, so merging changes behavior. Flags JSON deepClone, the pointless JSON clone in InvoiceRow, isOverdue boolean round-trip. Does not flag formatCurrency or daysBetween.",
       "files": [
-        "evals/fixtures/ts-duplicate-helpers"
+        "evals/deslop/fixtures/ts-duplicate-helpers"
       ],
       "answer_key": "answers/ts-duplicate-helpers.md"
     },
     {
       "id": 7,
       "name": "py-fastapi-boundaries",
-      "prompt": "evals/fixtures/py-fastapi-invoices/app/main.py — объясни и оцени, но ничего не меняй",
+      "prompt": "evals/deslop/fixtures/py-fastapi-invoices/app/main.py — объясни и оцени, но ничего не меняй",
       "expected_output": "Russian. Bugs listed separately: hallucinated fastapi_utils import silenced with noqa, catch-all returning a fake success with HTTP 200, placeholder Stripe key. Slop: validate_invoice duplicates pydantic, three dead bool flags in calculate_total, sales-language module docstring. Keeps the 404 and Field constraints. Stops after the menu or when user declines; makes no edits.",
       "files": [
-        "evals/fixtures/py-fastapi-invoices"
+        "evals/deslop/fixtures/py-fastapi-invoices"
       ],
       "answer_key": "answers/py-fastapi-invoices.md"
     },
     {
       "id": 8,
       "name": "py-test-slop-keep-coverage",
-      "prompt": "Clean the test slop in evals/fixtures/py-tests-slop/tests. Everything you find, go.",
+      "prompt": "Clean the test slop in evals/deslop/fixtures/py-tests-slop/tests. Everything you find, go.",
       "expected_output": "Marks the skipped test_loyalty_cap and the weakened '> 0' assertion as bugs, not slop; proposes unskipping and restoring an exact value. Collapses the per-year tests into parametrize. Deletes existence/dataclass/mock-of-min/formula-copy tests. After cleanup, zero years, per-year rate, cap at 5, and WELCOME10 each still have an exact-value test. Runs pytest before and after (or says pytest is not installed).",
       "files": [
-        "evals/fixtures/py-tests-slop"
+        "evals/deslop/fixtures/py-tests-slop"
       ],
       "answer_key": "answers/py-tests-slop.md"
     },
     {
       "id": 9,
       "name": "pr-drive-by-diff",
-      "prompt": "review evals/fixtures/pr-drive-by/pr-482.diff against the PR description in PR.md. is this mergeable?",
+      "prompt": "review evals/deslop/fixtures/pr-drive-by/pr-482.diff against the PR description in PR.md. is this mergeable?",
       "expected_output": "Leads with the verdict: only the typo fix belongs; the cache, options, fallback, try/catch, and send.ts reformat are out of scope. Flags caching password reset bodies as a security smell and a cache that never hits, and the swallowed send error as a bug. Flags only added lines.",
       "files": [
-        "evals/fixtures/pr-drive-by"
+        "evals/deslop/fixtures/pr-drive-by"
       ],
       "answer_key": "answers/pr-drive-by.md"
     },
     {
       "id": 10,
       "name": "clean-boundaries-no-false-positives",
-      "prompt": "check evals/fixtures/clean-ts-webhook/webhook.ts and evals/fixtures/clean-py-cli/dedupe.py for AI slop",
+      "prompt": "check evals/deslop/fixtures/clean-ts-webhook/webhook.ts and evals/deslop/fixtures/clean-py-cli/dedupe.py for AI slop",
       "expected_output": "Both score 0-1. Does not flag the env check, the signature check, the JSON parse try/catch with 400, CLI prints, or the commented local import. No high or med findings.",
       "files": [
-        "evals/fixtures/clean-ts-webhook",
-        "evals/fixtures/clean-py-cli"
+        "evals/deslop/fixtures/clean-ts-webhook",
+        "evals/deslop/fixtures/clean-py-cli"
       ],
       "answer_key": "answers/clean-fixtures.md"
     },
@@ -114,42 +114,42 @@
     {
       "id": 12,
       "name": "stopslop-ts-batch",
-      "prompt": "Find AI slop in every file in evals/external/stopslop/typescript. Show all findings, then stop before cleaning.",
+      "prompt": "Find AI slop in every file in evals/deslop/external/stopslop/typescript. Show all findings, then stop before cleaning.",
       "expected_output": "Findings in the SKILL.md one-line format so scripts/score_findings.py can score them. Target: recall >= 70% on slop_* files, no high/med findings on at least 85% of clean_* files. Note: stopslop counts `return null` in a catch as clean, deslop may flag it as D1; review those by hand.",
       "files": [
-        "evals/external/stopslop/typescript"
+        "evals/deslop/external/stopslop/typescript"
       ],
       "answer_key": "external/stopslop/labels.json",
-      "scorer": "python3 evals/scripts/score_findings.py <saved-output>"
+      "scorer": "python3 evals/deslop/scripts/score_findings.py <saved-output>"
     },
     {
       "id": 13,
       "name": "stopslop-python-batch",
-      "prompt": "Find AI slop in every file in evals/external/stopslop/python. Show all findings, then stop before cleaning.",
+      "prompt": "Find AI slop in every file in evals/deslop/external/stopslop/python. Show all findings, then stop before cleaning.",
       "expected_output": "Same as stopslop-ts-batch, for Python. Narrow excepts (`except KeyError: pass`) and docstring-documented no-op hooks must not be flagged.",
       "files": [
-        "evals/external/stopslop/python"
+        "evals/deslop/external/stopslop/python"
       ],
       "answer_key": "external/stopslop/labels.json",
-      "scorer": "python3 evals/scripts/score_findings.py <saved-output>"
+      "scorer": "python3 evals/deslop/scripts/score_findings.py <saved-output>"
     },
     {
       "id": 14,
       "name": "anti-slop-snippets",
-      "prompt": "For each TypeScript snippet in evals/external/anti-slop/snippets.json (use only the `code` field; ignore `kind`), say in one line whether it contains slop and which pattern.",
+      "prompt": "For each TypeScript snippet in evals/deslop/external/anti-slop/snippets.json (use only the `code` field; ignore `kind`), say in one line whether it contains slop and which pattern.",
       "expected_output": "Soft check against `kind`: chained `as unknown as T` and widen-then-assert are slop (T1/T3); `vi.mock` module mocking and filter+map chains are opinion, disagreement is fine when explained.",
       "files": [
-        "evals/external/anti-slop/snippets.json"
+        "evals/deslop/external/anti-slop/snippets.json"
       ],
       "answer_key": "external/anti-slop/snippets.json"
     },
     {
       "id": 15,
       "name": "codenet-blind-calibration",
-      "prompt": "Score the slop in each .py file under evals/external/codenet-blind/task-01 through task-05. Read TASK.md for context. Do not open manifest.json.",
+      "prompt": "Score the slop in each .py file under evals/deslop/external/codenet-blind/task-01 through task-05. Read TASK.md for context. Do not open manifest.json.",
       "expected_output": "Never claims or guesses who wrote a file. Terse competitive-programming code scores low. Stray ```python fences are flagged as R7. Across tasks, model-written files should average a higher score than human ones (check against manifest.json after the run); this is a calibration signal, not a pass/fail.",
       "files": [
-        "evals/external/codenet-blind"
+        "evals/deslop/external/codenet-blind"
       ],
       "answer_key": "external/codenet-blind/manifest.json"
     }

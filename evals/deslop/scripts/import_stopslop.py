@@ -4,7 +4,7 @@ The upstream fixtures carry their answers inline (`// expect: SLOP005`, trailing
 `# expect-line: 6 SLOP042`). The skill would read those, so this script strips
 them and writes the answers to labels.json instead, mapped to our pattern IDs.
 
-Usage: python3 evals/scripts/import_stopslop.py [commit-sha]
+Usage: python3 evals/deslop/scripts/import_stopslop.py [commit-sha]
 Needs the `gh` CLI (for the tree listing) and network access.
 """
 

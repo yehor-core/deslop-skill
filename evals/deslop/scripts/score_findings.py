@@ -4,7 +4,7 @@ The skill writes findings as
     <n>. [<pattern id>] <file>:<line or range> | <severity> | ...
 Save the skill's Step 2 output for a batch of files to a text file, then run:
 
-    python3 evals/scripts/score_findings.py <output.txt> [labels.json] [--tolerance 2]
+    python3 evals/deslop/scripts/score_findings.py <output.txt> [labels.json] [--tolerance 2]
 
 A label counts as found when a finding names the same file (by basename), a line
 within the tolerance, and the same pattern family (first letter: C, D, O, V, T, S, R).

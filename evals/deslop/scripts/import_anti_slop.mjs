@@ -4,7 +4,7 @@
 // opinionated ruleset, so "invalid" means "that author flags it"; deslop may
 // reasonably disagree, and the eval runner treats these as soft expectations.
 //
-// Usage: node evals/scripts/import_anti_slop.mjs   (needs the gh CLI)
+// Usage: node evals/deslop/scripts/import_anti_slop.mjs   (needs the gh CLI)
 
 import { execFileSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";

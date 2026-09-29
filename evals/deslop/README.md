@@ -42,8 +42,8 @@ scripts/
 ## Scoring the labeled set
 
 ```bash
-claude -p --plugin-dir . "Use the deslop skill. Find AI slop in every file in evals/external/stopslop/typescript. Treat 'show the slop?' as yes and stop after Step 2." > /tmp/ts-run.txt
-python3 evals/scripts/score_findings.py /tmp/ts-run.txt
+claude -p --plugin-dir . "Use the deslop skill. Find AI slop in every file in evals/deslop/external/stopslop/typescript. Treat 'show the slop?' as yes and stop after Step 2." > /tmp/ts-run.txt
+python3 evals/deslop/scripts/score_findings.py /tmp/ts-run.txt
 ```
 
 The scorer matches findings by file, line (plus or minus 2), and pattern family, and counts any high or med finding on a `clean_*` file as a false positive. stopslop and deslop disagree in a few places (stopslop calls `catch { return null }` clean; deslop may call it D1), so read the misses before tuning the skill.

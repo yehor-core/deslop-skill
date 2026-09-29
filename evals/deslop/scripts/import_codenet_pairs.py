@@ -4,7 +4,7 @@ Only CodeNet tasks are used; the Rosetta Code half of that dataset carries GFDL 
 Each task gets four solutions (one human, three models) under neutral names a.py..d.py
 in a seeded random order. manifest.json holds who wrote which; do not show it to the skill.
 
-Usage: python evals/scripts/import_codenet_pairs.py <path/to/ai_code_detection.parquet> [n_tasks]
+Usage: python evals/deslop/scripts/import_codenet_pairs.py <path/to/ai_code_detection.parquet> [n_tasks]
 Needs pyarrow. Parquet: https://huggingface.co/datasets/serafeimdossas/ai-code-detection
 """
 
