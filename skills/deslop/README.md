@@ -4,6 +4,16 @@ deslop is a skill for coding agents that reviews AI-written code. It tells you w
 
 Slop here means code that adds lines without adding behavior: comments that narrate the next line, try/catch blocks that hide errors, checks the types already guarantee, interfaces with one implementation, options nobody passes, tests that cannot fail. The skill judges code against the rest of your codebase. The score says how much of the code is slop; it does not guess whether a model wrote it, since people write slop too.
 
+## Install
+
+```bash
+npx skills add https://github.com/yehor-core/skills --skill deslop
+```
+
+The skill works best in Claude Code, where its questions show up as clickable menus. Other agents get the same questions as numbered lists.
+
+The skill's page on skills.sh: [skills.sh/yehor-core/skills/deslop](https://skills.sh/yehor-core/skills/deslop).
+
 ## Example
 
 Before:
@@ -53,19 +63,6 @@ def load_config(path: str) -> AppConfig:
     with open(path) as f:
         return AppConfig(**json.load(f))
 ```
-
-## Install
-
-```bash
-npx skills add https://github.com/yehor-core/skills --skill deslop
-```
-The CLI asks which agents to install the skill for. To skip the prompt, add `--agent` with an agent name (`claude-code`, `codex`, `cursor`, or any other agent the [Skills CLI](https://github.com/vercel-labs/skills) supports), or `--agent '*'` for all of them. 
-
-Add `--global` to install the skill for all your projects instead of only the current one.
-
-The skill works best in Claude Code, where its questions show up as clickable menus. Other agents get the same questions as numbered lists.
-
-The skill's page on skills.sh: [skills.sh/yehor-core/skills/deslop](https://skills.sh/yehor-core/skills/deslop).
 
 ## Usage
 
